@@ -1,19 +1,11 @@
 import {
-    Avatar,
     Box,
     Button,
-    Checkbox,
     Container,
-    CssBaseline,
-    FormControlLabel,
-    Grid,
-    Link,
     TextField,
     Typography,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import { resolve } from "path/posix";
 import React, { useEffect, useState } from "react";
 
 const CreateEvent = () => {

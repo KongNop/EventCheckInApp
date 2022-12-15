@@ -1,6 +1,20 @@
-import { Avatar, Box, Button, CircularProgress, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Grid,
+    IconButton,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    styled,
+    Typography,
+} from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import PendingIcon from '@mui/icons-material/Pending';
+import PendingIcon from "@mui/icons-material/Pending";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,16 +34,16 @@ const SingleEvent = () => {
             `https://1ay74hu2ik.execute-api.us-east-1.amazonaws.com/default/checkIn/${event}`
         );
         setEventDetail(res.data.Item);
-        setLoading(false)
+        setLoading(false);
     }
     useEffect(() => {
-        setLoading(true)
+        setLoading(true);
         fetchEvent();
     }, []);
     const Demo = styled("div")(({ theme }) => ({
         backgroundColor: theme.palette.background.paper,
     }));
-    
+
     if (loading) {
         return (
             <>
@@ -38,8 +52,8 @@ const SingleEvent = () => {
                         display: "flex",
                         justifyContent: "center",
                         minWidth: 290,
-                        height: '100vh',
-                        alignItems: "center"
+                        height: "100vh",
+                        alignItems: "center",
                     }}
                 >
                     <Box sx={{ display: "flex" }}>
@@ -51,6 +65,22 @@ const SingleEvent = () => {
     }
     return (
         <>
+            <div
+                style={{
+                    backgroundColor: "white",
+                    borderRadius: 5,
+                    width: "full",
+                }}
+            >
+                <Typography
+                    align="center"
+                    sx={{ mt: 5, mb: 2, color: "#E67F0D" }}
+                    variant="h2"
+                    component="div"
+                >
+                    {eventDetail.eventName}
+                </Typography>
+            </div>
             <Box
                 sx={{
                     display: "flex",
@@ -59,14 +89,6 @@ const SingleEvent = () => {
                 }}
             >
                 <Grid item xs={12} md={12}>
-                    <Typography
-                        align="center"
-                        sx={{ mt: 10, mb: 2 }}
-                        variant="h2"
-                        component="div"
-                    >
-                        {eventDetail.eventName}
-                    </Typography>
                     <Typography
                         align="center"
                         sx={{ mt: 4, mb: 2 }}
@@ -99,9 +121,12 @@ const SingleEvent = () => {
                                                     aria-label="delete"
                                                 >
                                                     {user.status === true ? (
-                                                        <CheckCircleIcon fontSize="large" color="success" />
+                                                        <CheckCircleIcon
+                                                            fontSize="large"
+                                                            color="success"
+                                                        />
                                                     ) : (
-                                                        <PendingIcon fontSize="large"/>
+                                                        <PendingIcon fontSize="large" />
                                                     )}
                                                 </IconButton>
                                             }
