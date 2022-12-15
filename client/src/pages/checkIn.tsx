@@ -1,3 +1,5 @@
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -54,30 +56,93 @@ const CheckIn = () => {
     })
     return (
         <>
-            <h1>Check In to Event: {event}</h1>
-            <h2>{eventDetail.description}</h2>
-            <h3>{eventDetail.eventDate}</h3>
-            <h3>Find your name</h3>
-            <ul>
-                {uncheckedUser.map((user, index) => {
-                    return (
-                        <li key={index}>
-                            {user.name} :{" "}
-                            {user.status ? "Checked In" : "Not Checked In"}
-                        </li>
-                    );
-                })}
-            </ul>
-            <h3>Find your name here</h3>
-            <Select
-                options={userOptions}
-                onChange={(option) => {
-                    setUser(option.value);
+            <div
+                style={{
+                    backgroundColor: "white",
+                    borderRadius: 5,
+                    width: "full",
                 }}
-            />
-            <button type="button" onClick={() => { handleChangeUser() }}>
-                CheckIn
-            </button>
+            >
+                <Typography
+                    align="center"
+                    sx={{ mt: 5, mb: 2, color: "#E67F0D" }}
+                    variant="h2"
+                    component="div"
+                >
+                    {eventDetail.eventName}
+                </Typography>
+            </div>
+            <div
+                style={{
+                    backgroundColor: "#f87d64",
+                    borderRadius: 5,
+                    width: "full",
+                }}
+            >
+                <Typography
+                    align="center"
+                    sx={{ mb: 2, color: "#FFFFFF" }}
+                    paragraph
+                    component="div"
+                >
+                    {eventDetail.eventDate}
+                </Typography>
+            </div>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    minWidth: 290,
+                }}
+            >
+                <Grid item xs={12} md={12}>
+                    <Typography
+                        align="left"
+                        sx={{
+                            mt: 4,
+                            mb: 2,
+                            whiteSpace: "pre-line",
+                            color: "white",
+                        }}
+                        variant="h6"
+                        component="div"
+                    >
+                        {eventDetail.description}
+                    </Typography>
+                </Grid>
+            </Box>
+
+            <Container
+                component="main"
+                sx={{ backgroundColor: "white", padding: 3 }}
+            >
+                <h3>Find your name here</h3>
+                <Select
+                    options={userOptions}
+                    onChange={(option) => {
+                        setUser(option.value);
+                    }}
+                />
+                <Button
+                    type="button"
+                    fullWidth
+                    // color="success"
+                    disabled={targetUser === ""}
+                    variant="contained"
+                    onClick={() => {
+                        handleChangeUser();
+                    }}
+                    sx={{
+                        mt: 3,
+                        mb: 2,
+                        bgcolor: "#5EC2B7",
+                        color: "white",
+                        ":hover": { bgcolor: "#8ad1c9" },
+                    }}
+                >
+                    Check In
+                </Button>
+            </Container>
         </>
     ); 
 };

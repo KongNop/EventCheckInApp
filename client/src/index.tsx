@@ -7,6 +7,7 @@ import Admin from './pages/admin';
 import CheckIn from './pages/checkIn';
 import CompleteCheckIn from './pages/others/completeCheckIn';
 import SingleEvent from './components/SingleEvent';
+import Footer from './components/Footer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,5 +23,6 @@ root.render(
                 element={<CompleteCheckIn />}
             />
         </Routes>
+
     </BrowserRouter>
 );

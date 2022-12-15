@@ -135,7 +135,7 @@ const CreateEvent = () => {
                                 </Button>
                             </div>
                         </form>
-                        <h4>Current Participants</h4>
+                        <h4>Current Participants:</h4>
                         {users.length === 0 ? (
                             <Typography align="center" component="div">
                                 none
@@ -170,6 +170,12 @@ const CreateEvent = () => {
                             variant="contained"
                             onClick={handleCreateEvent}
                             sx={{ mt: 3, mb: 2 }}
+                            disabled={
+                                eventDate == "" ||
+                                eventName == "" ||
+                                description == "" ||
+                                users.length == 0
+                            }
                         >
                             Create Event
                         </Button>

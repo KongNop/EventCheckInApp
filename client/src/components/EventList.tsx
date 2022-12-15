@@ -42,7 +42,7 @@ const EventList = () => {
             <>
                 <Typography
                     align="center"
-                    sx={{ mt: 10, mb: 2, color: "white", fontWeight: "bold" }}
+                    sx={{ mt: 5, mb: 2, color: "white", fontWeight: "bold" }}
                     variant="h2"
                     component="div"
                 >
@@ -67,7 +67,7 @@ const EventList = () => {
         <>
             <Typography
                 align="center"
-                sx={{ mt: 10, mb: 2, color: "white", fontWeight: "bold" }}
+                sx={{ mt: 5, mb: 2, color: "white", fontWeight: "bold" }}
                 variant="h2"
                 component="div"
             >

@@ -47,6 +47,18 @@ exports.handler = async (event) => {
                     .promise();
                 body = `Event ${requestJSON.eventName} Added!`;
                 break;
+            case event.httpMethod == "DELETE" &&
+                event.resource == "/events/{name}":
+                console.log("got a name", event.pathParameters.name);
+                body = await dynamo
+                    .delete({
+                        TableName: "events",
+                        Key: {
+                            eventName: event.pathParameters.name,
+                        },
+                    })
+                    .promise();
+                break;
             default:
                 throw new Error(`Oops! something went wrong`);
         }
