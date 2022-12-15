@@ -27,9 +27,12 @@ exports.handler = async (event) => {
                     Key: {
                         eventName: event.pathParameters.eventName,
                     },
-                    UpdateExpression: `set users = :value`,
+                    UpdateExpression: `set #users = :value`,
                     ExpressionAttributeValues: {
                         ":value": requestJSON.updatedUsers,
+                    },
+                    ExpressionAttributeNames: {
+                        "#users": "users",
                     },
                     returnValues: "UPDATE_NEW",
                 };
