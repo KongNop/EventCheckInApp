@@ -1,8 +1,13 @@
 import React from 'react'
 
 const CreateEvent = () => {
+  function handleCreateEvent() {
+    
+  }
   return (
-    <div>CreateEvent</div>
+    <>
+    
+    </>
   )
 }
 
