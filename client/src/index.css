@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.createEvent {
+  padding-top: 1px;
+  padding-bottom: 3vh;
+  background-color: aliceblue;
+  margin-bottom: 2vh;
+}
