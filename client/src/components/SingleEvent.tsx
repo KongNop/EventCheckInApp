@@ -1,11 +1,13 @@
-import { Avatar, Box, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from "@mui/material";
+import { Avatar, Box, Button, CircularProgress, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PendingIcon from '@mui/icons-material/Pending';
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SingleEvent = () => {
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [eventDetail, setEventDetail] = useState({
         eventName: "",
         eventDate: "",
@@ -17,16 +19,36 @@ const SingleEvent = () => {
         const res: AxiosResponse<any, any> = await axios.get(
             `https://1ay74hu2ik.execute-api.us-east-1.amazonaws.com/default/checkIn/${event}`
         );
-        console.log(res.data);
         setEventDetail(res.data.Item);
+        setLoading(false)
     }
     useEffect(() => {
+        setLoading(true)
         fetchEvent();
     }, []);
     const Demo = styled("div")(({ theme }) => ({
         backgroundColor: theme.palette.background.paper,
     }));
     
+    if (loading) {
+        return (
+            <>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        minWidth: 290,
+                        height: '100vh',
+                        alignItems: "center"
+                    }}
+                >
+                    <Box sx={{ display: "flex" }}>
+                        <CircularProgress />
+                    </Box>
+                </Box>
+            </>
+        );
+    }
     return (
         <>
             <Box
@@ -36,7 +58,6 @@ const SingleEvent = () => {
                     minWidth: 290,
                 }}
             >
-                …
                 <Grid item xs={12} md={12}>
                     <Typography
                         align="center"
@@ -54,8 +75,8 @@ const SingleEvent = () => {
                         {eventDetail.eventDate}
                     </Typography>
                     <Typography
-                        align="center"
-                        sx={{ mt: 4, mb: 2 }}
+                        align="left"
+                        sx={{ mt: 4, mb: 2, whiteSpace: "pre-line" }}
                         variant="h6"
                         component="div"
                     >
@@ -64,24 +85,23 @@ const SingleEvent = () => {
                     <Demo>
                         <Box
                             sx={{
-                                display: "flex",
-                                justifyContent: "center",
                                 minWidth: 290,
                             }}
                         >
                             <List>
-                                {eventDetail.users.map((user) => {
+                                {eventDetail.users.map((user, index) => {
                                     return (
                                         <ListItem
+                                            key={index}
                                             secondaryAction={
                                                 <IconButton
                                                     edge="end"
                                                     aria-label="delete"
                                                 >
                                                     {user.status === true ? (
-                                                        <CheckCircleIcon color="success" />
+                                                        <CheckCircleIcon fontSize="large" color="success" />
                                                     ) : (
-                                                        <PendingIcon />
+                                                        <PendingIcon fontSize="large"/>
                                                     )}
                                                 </IconButton>
                                             }
@@ -96,6 +116,17 @@ const SingleEvent = () => {
                             </List>
                         </Box>
                     </Demo>
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <Button
+                            variant="contained"
+                            sx={{ mt: 2, bgcolor: "gray" }}
+                            onClick={() => {
+                                navigate("/admin");
+                            }}
+                        >
+                            Back
+                        </Button>
+                    </Box>
                 </Grid>
             </Box>
         </>
