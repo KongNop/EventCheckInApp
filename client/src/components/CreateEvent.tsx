@@ -1,10 +1,4 @@
-import {
-    Box,
-    Button,
-    Container,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -13,6 +7,7 @@ const CreateEvent = () => {
     const [eventDate, setEventDate] = useState("");
     const [description, setDescription] = useState("");
     const [users, setUsers] = useState([{ name: "", status: false }]);
+    const [remove, setRemove] = useState(false);
     const [user, setUser] = useState("");
     async function handleCreateEvent() {
         const res = await axios.post(
@@ -47,18 +42,21 @@ const CreateEvent = () => {
     useEffect(() => {
         setUsers([]);
     }, []);
+
     return (
         <>
             <Container
                 component="main"
-                maxWidth="sm"
                 sx={{
                     bgcolor: "white",
                     paddingTop: 1,
                     paddingBottom: 5,
-                    borderRadius: 10,
-                    mb: 5,
+                    borderTopRightRadius: 100,
+                    borderTopLeftRadius: 5,
+                    pb: 10,
                     mt: 5,
+                    boxShadow:
+                        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
                 }}
             >
                 <Box
@@ -156,16 +154,16 @@ const CreateEvent = () => {
                                 </Typography>
                             );
                         })}
-                        <Button
+                        {/* <Button
                             type="button"
                             fullWidth
                             color="error"
                             variant="contained"
                             sx={{ mb: 2 }}
-                            onClick={handleRemovePeople}
+                            onClick={() => handleRemovePeople()}
                         >
                             Remove Participants
-                        </Button>
+                        </Button> */}
                         <Button
                             type="button"
                             fullWidth

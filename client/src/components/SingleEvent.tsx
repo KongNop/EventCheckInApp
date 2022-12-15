@@ -81,6 +81,22 @@ const SingleEvent = () => {
                     {eventDetail.eventName}
                 </Typography>
             </div>
+            <div
+                style={{
+                    backgroundColor: "#f87d64",
+                    borderRadius: 5,
+                    width: "full",
+                }}
+            >
+                <Typography
+                    align="center"
+                    sx={{ mb: 2, color: "#FFFFFF" }}
+                    paragraph
+                    component="div"
+                >
+                    {eventDetail.eventDate}
+                </Typography>
+            </div>
             <Box
                 sx={{
                     display: "flex",
@@ -90,15 +106,8 @@ const SingleEvent = () => {
             >
                 <Grid item xs={12} md={12}>
                     <Typography
-                        align="center"
-                        sx={{ mt: 4, mb: 2 }}
-                        component="div"
-                    >
-                        {eventDetail.eventDate}
-                    </Typography>
-                    <Typography
                         align="left"
-                        sx={{ mt: 4, mb: 2, whiteSpace: "pre-line" }}
+                        sx={{ mt: 4, mb: 2, whiteSpace: "pre-line", color: 'white' }}
                         variant="h6"
                         component="div"
                     >
